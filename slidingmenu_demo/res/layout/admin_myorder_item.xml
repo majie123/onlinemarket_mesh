@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/common_entry_item_bg"
+    android:orientation="horizontal"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/orderdetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        android:textColor="@color/ble_blue"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/ordername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderdetail"
+        android:layout_margin="0dp"
+        android:layout_marginTop="10dp"
+        android:text="收货人：小小"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/orderaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ordername"
+        android:layout_margin="0dp"
+        android:layout_marginTop="10dp"
+        android:text="收货地址：太原"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/orderphonenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderaddress"
+        android:layout_margin="0dp"
+        android:layout_marginTop="10dp"
+        android:text="手机号:15811490155"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+    
+    <TextView
+        android:id="@+id/orderpaymethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderphonenum"
+        android:layout_margin="0dp"
+        android:layout_marginTop="10dp"
+        android:text="在线已支付"
+        android:textColor="@color/ble_blue"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/ordertime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderpaymethod"
+        android:layout_margin="0dp"
+        android:layout_marginTop="10dp"
+        android:text="配送中..."
+        android:textColor="@color/orange"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/delive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:text="送达" />
+    
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_call"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/iv_call"/>
+
+</RelativeLayout>

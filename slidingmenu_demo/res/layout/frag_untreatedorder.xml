@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+     >
+
+    <com.online.market.view.xlist.XListView
+        android:layout_width="match_parent"
+        android:id="@+id/xlv"
+        android:layout_height="wrap_content" />
+    
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_order"
+        android:text="没有订单..."
+        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
