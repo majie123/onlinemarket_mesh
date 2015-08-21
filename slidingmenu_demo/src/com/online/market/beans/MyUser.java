@@ -8,9 +8,19 @@ public class MyUser extends BmobUser {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**超级用户*/
+	public static int GROUP_ROOT=3;
+	/**打包者*/
+	public static int GROUP_PACKER=2;
+	/**配送者*/
+	public static int GROUP_DISPATCHER=1;
+	/**普通用户*/
+	public static int GROUP_USER=0;
+	
 	private String nickname;
 	private BmobFile avatar;
-//	private String DEVICE_ID;
+	private int group;
+	
 	/***
 	 * 我的邀请码
 	 */
@@ -24,6 +34,8 @@ public class MyUser extends BmobUser {
 	 */
 	private boolean isCousumed=false;
 	
+	private String installId;
+	
 	public String getInviteCode() {
 		return inviteCode;
 	}
@@ -36,6 +48,12 @@ public class MyUser extends BmobUser {
 	public void setByInviteCode(String byInviteCode) {
 		this.byInviteCode = byInviteCode;
 	}
+	public boolean isCousumed() {
+		return isCousumed;
+	}
+	public void setCousumed(boolean isCousumed) {
+		this.isCousumed = isCousumed;
+	}
 	public BmobFile getAvatar() {
 		return avatar;
 	}
@@ -45,20 +63,20 @@ public class MyUser extends BmobUser {
 	public String getNickname() {
 		return nickname;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickname(String realname) {
+		this.nickname = realname;
 	}
-//	public String getDEVICE_ID() {
-//		return DEVICE_ID;
-//	}
-//	public void setDEVICE_ID(String dEVICE_ID) {
-//		DEVICE_ID = dEVICE_ID;
-//	}
-	public boolean isCousumed() {
-		return isCousumed;
+	public int getGroup() {
+		return group;
 	}
-	public void setCousumed(boolean isCousumed) {
-		this.isCousumed = isCousumed;
+	public void setGroup(int group) {
+		this.group = group;
+	}
+	public String getInstallId() {
+		return installId;
+	}
+	public void setInstallId(String installId) {
+		this.installId = installId;
 	}
 	
 }

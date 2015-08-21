@@ -2,6 +2,8 @@ package com.online.market.beans;
 
 import java.util.List;
 
+import com.online.market.admin.util.DateUtil;
+
 import cn.bmob.v3.BmobObject;
 
 public class OrderBean extends BmobObject {
@@ -102,5 +104,22 @@ public class OrderBean extends BmobObject {
 	public void setState(int state) {
 		this.state = state;
 	}
+	
+	public boolean isOutOfTime(){
+		int state = DateUtil.isOutOfTime(getCreatedAt());
+		if(state==2){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isHurryUp(){
+		int state = DateUtil.isOutOfTime(getCreatedAt());
+		if(state==1){
+			return true;
+		}
+		return false;
+	}
+
 
 }

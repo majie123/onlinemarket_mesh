@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -223,6 +224,8 @@ public class RegisterActivity extends BaseActivity {
 		myUser.setNickname(nickname);
 		myUser.setPassword(userpsw);
 		myUser.setInviteCode(phonenum.substring(5));
+		BmobInstallation in=BmobInstallation.getCurrentInstallation(this);
+		myUser.setInstallId(in.getInstallationId());
 		if(file!=null){
 			myUser.setAvatar(file);
 		}

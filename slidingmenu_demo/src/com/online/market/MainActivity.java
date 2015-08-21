@@ -8,30 +8,21 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import cn.bmob.push.BmobPush;
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobInstallation;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.online.market.fragment.CommodityFragment;
 import com.online.market.fragment.LeftFragment;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.update.UmengUpdateAgent;
 
 /**
  * @date 2014/11/14
- * @author wuwenjie
+ * @author majie
  * @description 主界面
  */
 public class MainActivity extends SlidingFragmentActivity implements
 		OnClickListener {
 	
-	/**
-	 * SDK初始化建议放在启动页
-	 */
-	public static String APPID = "bb9c8700c4d1821c09bfebaf1ba006b1";
-
 	private ImageView topButton;
 	private Fragment mContent;
 	private TextView topTextView;
@@ -43,14 +34,6 @@ public class MainActivity extends SlidingFragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Bmob.initialize(getApplicationContext(),APPID);
-	      //开启debug服务后，可知晓push服务是否正常启动和运行
-	      		BmobPush.setDebugMode(true);
-	      		//
-	      		BmobPush.startWork(this, APPID);	
-	      		
-	    		BmobInstallation.getCurrentInstallation(this).save();
-
 		findViewById(R.id.head);
 		topButton = (ImageView) findViewById(R.id.topButton);
 		topButton.setOnClickListener(this);
@@ -63,15 +46,8 @@ public class MainActivity extends SlidingFragmentActivity implements
 		
 		initSlidingMenu(savedInstanceState);
 		
-		updateVersion();
-		
 	}
 	
-	private void updateVersion(){
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
-		UmengUpdateAgent.forceUpdate(this);;
-	}
-
 	/**
 	 * 初始化侧边栏
 	 */

@@ -14,6 +14,7 @@ public class CommodityBean extends BmobObject{
 	private float price;
 	private BmobFile pics;
 	private int sold;
+	private String category;
 	
 	public String getName() {
 		return name;
@@ -38,6 +39,12 @@ public class CommodityBean extends BmobObject{
 	}
 	public void setSold(int sold) {
 		this.sold = sold;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

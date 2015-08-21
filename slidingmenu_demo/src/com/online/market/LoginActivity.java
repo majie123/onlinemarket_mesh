@@ -5,20 +5,26 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import cn.bmob.push.BmobPush;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobInstallation;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 
+import com.online.market.admin.AdminActivity;
 import com.online.market.beans.MyUser;
 import com.online.market.utils.MobileUtil;
 import com.online.market.utils.ProgressUtil;
+import com.umeng.update.UmengUpdateAgent;
 
 public class LoginActivity extends BaseActivity {
+	/**
+	 * SDK初始化建议放在启动页
+	 */
+	public static String APPID = "bb9c8700c4d1821c09bfebaf1ba006b1";
+	
 	private EditText etPhoneNum, etUserpsw;
 	private Button signin;
-//	private Button btQQlogin;
-	
-//	private Tencent mTencent;
-//	private UserInfo mInfo;
-//	private String openid;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,14 +64,6 @@ public class LoginActivity extends BaseActivity {
 			}
 		});
 		
-//		btQQlogin.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View arg0) {
-//				qqlogin();
-//			}
-//		});
-		
         mImgLeft.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -74,22 +72,12 @@ public class LoginActivity extends BaseActivity {
 			}
 		});
     }
-    
-//    private void qqlogin(){
-//		mTencent = Tencent.createInstance("222222", this.getApplicationContext());
-//		if (!mTencent.isSessionValid())
-//		{
-//		    mTencent.login(this, "", new BaseUiListener());
-//		    ProgressUtil.showProgress(LoginActivity.this, "");
-//		}
-//	}
 
 	@Override
 	protected void initView() {
 		signin = (Button) findViewById(R.id.signin);
 		etPhoneNum = (EditText) findViewById(R.id.et_phonenum);
 		etUserpsw = (EditText) findViewById(R.id.userpsw);
-//		btQQlogin=(Button) findViewById(R.id.bt_qqlogin);
 		
 		mBtnTitleMiddle.setVisibility(View.VISIBLE);
 		mBtnTitleMiddle.setText("登录");
@@ -105,7 +93,29 @@ public class LoginActivity extends BaseActivity {
 
 	@Override
 	protected void initData() {
-
+		initBmob();
+		updateVersion();
+		
+		if(user!=null&&user.getGroup()==MyUser.GROUP_USER){
+			startActivity(MainActivity.class);
+			finish();
+		}else if(user!=null){
+			startActivity(AdminActivity.class);
+			finish();
+		}
+	}
+	
+	private void initBmob(){
+		Bmob.initialize(getApplicationContext(),APPID);
+	      //开启debug服务后，可知晓push服务是否正常启动和运行
+		BmobPush.setDebugMode(true);
+  		BmobPush.startWork(this, APPID);			
+	    	BmobInstallation.getCurrentInstallation(this).save();
+	}
+	
+	private void updateVersion(){
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
+		UmengUpdateAgent.forceUpdate(this);;
 	}
 	
 	/**
@@ -122,6 +132,10 @@ public class LoginActivity extends BaseActivity {
 			public void onSuccess() {
 				toastMsg(bu.getUsername() + "登陆成功");
 				ProgressUtil.closeProgress();
+				MyUser u=BmobUser.getCurrentUser(LoginActivity.this, MyUser.class);
+				if(u.getGroup()!=MyUser.GROUP_USER){
+					startActivity(AdminActivity.class);
+				}
 				finish();
 			}
 
@@ -133,88 +147,5 @@ public class LoginActivity extends BaseActivity {
 			}
 		});
 	}
-	
-//	private class BaseUiListener implements IUiListener {
-//
-//		@Override
-//		public void onCancel() {
-//			ProgressUtil.closeProgress();
-//		}
-//
-//		@Override
-//		public void onComplete(Object object) {
-////			Log.e("majie",object.toString());
-//			try {
-//				JSONObject jsonObject=new JSONObject(object.toString());
-//				openid=jsonObject.getString("openid");
-//			} catch (JSONException e) {
-//				e.printStackTrace();
-//			}
-//			
-//			mInfo = new UserInfo(LoginActivity.this, mTencent.getQQToken());
-//			mInfo.getUserInfo(listener);
-//		}
-//
-//		@Override
-//		public void onError(UiError arg0) {
-//			toastMsg(arg0.errorDetail);
-//			ProgressUtil.closeProgress();
-//		}
-//	}
-	
-//	@Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//	    mTencent.onActivityResult(requestCode, resultCode, data);
-//	}
-	
-//	private IUiListener listener = new IUiListener() {
-//
-//		@Override
-//		public void onError(UiError e) {
-//			ProgressUtil.closeProgress();
-//			toastMsg(e.errorDetail);
-//		}
-//
-//		@Override
-//		public void onComplete(final Object response) {
-//			QQUser qqUser=QQUser.parse(response.toString());
-//			final MyUser myUser=new MyUser();
-//			myUser.setUsername(openid);
-//			myUser.setPassword("m448279895");
-//			myUser.setNickname(qqUser.nikename);
-//			myUser.login(getApplicationContext(), new SaveListener() {
-//				
-//				@Override
-//				public void onSuccess() {
-//					toastMsg("登录成功");
-//					ProgressUtil.closeProgress();
-//					finish();
-//				}
-//				
-//				@Override
-//				public void onFailure(int arg0, String arg1) {
-//                        myUser.signUp(getApplicationContext(), new SaveListener() {
-//						
-//						@Override
-//						public void onSuccess() {
-//							toastMsg("注册成功");
-//							ProgressUtil.closeProgress();
-//							finish();
-//						}
-//						
-//						@Override
-//						public void onFailure(int arg0, String arg1) {
-//							ProgressUtil.closeProgress();
-//						}
-//					});
-//				}
-//			});
-//		}
-//
-//		@Override
-//		public void onCancel() {
-//			ProgressUtil.closeProgress();
-//		}
-//	};
 	
 }
