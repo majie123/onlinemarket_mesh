@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
     
-    <RelativeLayout
+    <!--  <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/topbar"
@@ -25,7 +25,7 @@
             android:textColor="@color/white"
             android:layout_centerInParent="true"
             android:textSize="20sp"/>
-    </RelativeLayout>
+    </RelativeLayout>-->
     
     <TextView android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -119,8 +119,7 @@
         android:id="@+id/bt_submit"
         android:text="修改"/>
     
-    <Button android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <Button style="@style/button"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"

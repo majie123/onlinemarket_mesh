@@ -38,6 +38,13 @@ public class SettingActivity extends BaseActivity {
 
 	@Override
 	public void initView() {
+		mBtnTitleMiddle.setVisibility(View.VISIBLE);
+		mBtnTitleMiddle.setText("发布商品");
+		mBtnTitleMiddle.setTextColor(getResources().getColor(R.color.white));
+		
+		mImgLeft.setVisibility(View.VISIBLE);
+		mImgLeft.setBackgroundResource(R.drawable.back_bg_selector);
+		
 		btEdit=(Button) findViewById(R.id.bt_edit_commodity);
 		btPublish=(Button) findViewById(R.id.bt_publish_commodity);
 		btLogout=(Button) findViewById(R.id.bt_logout);
@@ -68,6 +75,13 @@ public class SettingActivity extends BaseActivity {
 
 	@Override
 	public void setListeners() {
+		mImgLeft.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				finish();
+			}
+		});
 		
 		btEdit.setOnClickListener(new OnClickListener() {
 			

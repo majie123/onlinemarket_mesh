@@ -66,6 +66,13 @@ public class PublishCommodityActivity extends BaseActivity {
 
 	@Override
 	public void initView() {
+		mBtnTitleMiddle.setVisibility(View.VISIBLE);
+		mBtnTitleMiddle.setText("发布商品");
+		mBtnTitleMiddle.setTextColor(getResources().getColor(R.color.white));
+		
+		mImgLeft.setVisibility(View.VISIBLE);
+		mImgLeft.setBackgroundResource(R.drawable.back_bg_selector);
+		
 		etName=(EditText) findViewById(R.id.et_name);
 		etPrice=(EditText) findViewById(R.id.et_price);
 		ivPic=(ImageView) findViewById(R.id.iv_pic);
@@ -85,6 +92,13 @@ public class PublishCommodityActivity extends BaseActivity {
 
 	@Override
 	public void setListeners() {
+		mImgLeft.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				finish();
+			}
+		});
 		
 		categorySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
